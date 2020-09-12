@@ -24,7 +24,6 @@ class HomePage extends React.Component {
       size: this.state.size
     })
 
-    console.log(res.data.data)
     if (res.status) {
       this.setState({
         listProduct: res.data.data,
@@ -43,10 +42,7 @@ class HomePage extends React.Component {
         page: this.state.page - 1
       })
       await this.fetchData()
-    } else {
-      alert('First page already')
-    }
-
+    } 
   }
   nextPage = async () => {
     if (this.state.page < Math.ceil(this.state.total / this.state.size)) {
@@ -54,17 +50,15 @@ class HomePage extends React.Component {
         page: this.state.page + 1
       })
       await this.fetchData()
-    } else {
-      alert('Page run out')
-    }
+    } 
   }
   render() {
     return (
       <div style={{ paddingTop: 65, }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <Button variant="contained" style={{ backgroundColor: '#fafafa' }} onClick={this.prevPage}>Prev</Button>
+          <Button variant="contained" color='primary' onClick={this.prevPage}>Prev</Button>
           <Typography>{this.state.page}-{Math.ceil(this.state.total / this.state.size)}</Typography>
-          <Button variant="contained" style={{ backgroundColor: '#fafafa' }} onClick={this.nextPage}>Next</Button>
+          <Button variant="contained" color='primary' onClick={this.nextPage}>Next</Button>
         </div>
         <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
           {

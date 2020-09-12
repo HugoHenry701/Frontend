@@ -44,7 +44,7 @@ export default class NavBar extends React.Component {
                         <Button color="inherit">Subcribe</Button>
                     </Toolbar>
                 </AppBar>
-                <nav className={this.props.drawer} aria-lable="List Field">
+                <nav className={this.props.drawer} >
                     <Hidden smUp implementation="css" >
                         <Drawer
                             variant="temporary"

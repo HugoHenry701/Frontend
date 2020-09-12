@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import {
     Paper,
-    Typography,
-    Button,
     ListSubheader,
     List,
     ListItem,
@@ -16,8 +14,8 @@ import {
     Home,
     VpnKey,
     Category,
+    AccountCircle,
 } from '@material-ui/icons'
-import { makeStyles } from '@material-ui/core/styles'
 import CategoryForm from './category'
 import API from '../../API'
 import {
@@ -86,6 +84,22 @@ export default class index extends Component {
                                 <VpnKey />
                             </ListItemIcon>
                             <ListItemText primary="Login" />
+                        </ListItem>
+                    </Link>
+                    <Link to="/SignUp">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <VpnKey />
+                            </ListItemIcon>
+                            <ListItemText primary="SignUp" />
+                        </ListItem>
+                    </Link>
+                    <Link to="/profile">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <AccountCircle />
+                            </ListItemIcon>
+                            <ListItemText primary="Profile" />
                         </ListItem>
                     </Link>
                     <ListItem button onClick={this.handleClick}>

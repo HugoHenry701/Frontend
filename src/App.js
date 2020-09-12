@@ -2,6 +2,8 @@ import React from 'react';
 import { withSnackbar } from 'notistack'
 import HomePage from './views/HomePage';
 import SignIn from './views/SignIn'
+import SignUp from './views/SignUp'
+import Profile from './views/Profile'
 import NotFound from './views/NotFound'
 import shopCart from './views/shopCart'
 import {
@@ -30,6 +32,14 @@ class App extends React.Component {
             <Route
               component={SignIn}
               exact path="/SignIn"
+            />
+            <Route
+              component={SignUp}
+              exact path="/SignUp"
+            />
+            <Route
+              component={Profile}
+              exact path="/profile"
             />
             <Route
               component={NotFound}
