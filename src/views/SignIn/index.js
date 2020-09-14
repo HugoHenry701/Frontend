@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -60,18 +60,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
-  const [username, setUsername] = React.useState('')
-  const [password, setPassword] = React.useState('')
-
-  const handleChange1 = (event) => {
-    //setState : event.target.name = event.target.value
-    setPassword(event.target.value)
-  }
-  const handleChange2 = (event) => {
-    setUsername(event.target.value)
+  const [values, setValues] = useState({
+    username: '',
+    password: '',
+  })
+  const handleChange = (event) => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value
+    })
   }
   const handleLogin = async () => {
-    const result = await api.auth.login(username, password)
+    const result = await api.auth.login(values.username, values.password)
     if (result.status) {
       Cookies.set('token', result.token, {
         expires: 365
@@ -100,11 +100,11 @@ export default function SignInSide() {
               fullWidth
               id="email"
               label="Email Address"
-              name="email"
+              name="username"
               autoComplete="email"
               autoFocus
-              onChange={handleChange2}
-              type='text'
+              onChange={handleChange}
+              value={values.username}
             />
             <TextField
               variant="outlined"
@@ -116,7 +116,8 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
-              onChange={handleChange1}
+              onChange={handleChange}
+              value={values.password}
             />
             < FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
