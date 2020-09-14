@@ -12,6 +12,9 @@ import {
   Route,
 } from 'react-router-dom'
 import NavForm from './views/NavBar'
+import PRoute from './components/protectedRoute'
+import unAuth from './views/unauthorized'
+import Cookies from 'js-cookie'
 
 class App extends React.Component {
 
@@ -37,9 +40,14 @@ class App extends React.Component {
               component={SignUp}
               exact path="/SignUp"
             />
-            <Route
+            <PRoute
               component={Profile}
               exact path="/profile"
+              token={Cookies.getJSON('token')}
+            />
+            <Route
+              component={unAuth}
+              exact path="/unauthorized"
             />
             <Route
               component={NotFound}

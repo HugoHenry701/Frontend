@@ -12,24 +12,25 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-
+import Cookies from 'js-cookie'
+import api from '../../API'
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center" >
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="/">
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
-      { '.' }
+      { '.'}
     </Typography>
-  ) ;
+  );
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
-  } ,
+  },
   image: {
     backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundRepeat: 'no-repeat',
@@ -37,29 +38,48 @@ const useStyles = makeStyles((theme) => ({
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-  } ,
+  },
   paper: {
     margin: theme.spacing(8, 4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  } ,
-  avatar : {
+  },
+  avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
-  } ,
+  },
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
-  } ,
+  },
   submit: {
     margin: theme.spacing(3, 0, 2),
-  } ,
-} ) ) ;
+  },
+}));
 
 export default function SignInSide() {
   const classes = useStyles();
+  const [username, setUsername] = React.useState('')
+  const [password, setPassword] = React.useState('')
 
+  const handleChange1 = (event) => {
+    //setState : event.target.name = event.target.value
+    setPassword(event.target.value)
+  }
+  const handleChange2 = (event) => {
+    setUsername(event.target.value)
+  }
+  const handleLogin = async () => {
+    const result = await api.auth.login(username, password)
+    if (result.status) {
+      Cookies.set('token', result.token, {
+        expires: 365
+      })
+    } else {
+      console.log('cannot get token');
+    }
+  }
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -83,6 +103,8 @@ export default function SignInSide() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={handleChange2}
+              type='text'
             />
             <TextField
               variant="outlined"
@@ -94,6 +116,7 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={handleChange1}
             />
             < FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -105,6 +128,8 @@ export default function SignInSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={handleLogin}
+              href='/profile'
             >
               Sign In
             </Button>
@@ -115,7 +140,7 @@ export default function SignInSide() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/SignUp" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -127,5 +152,5 @@ export default function SignInSide() {
         </div>
       </Grid>
     </Grid>
-  ) ;
+  );
 }

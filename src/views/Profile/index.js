@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Container,
     Grid,
-    makeStyles
+    makeStyles,
+    Button,
 } from '@material-ui/core';
 import Page from '../../components/Page';
 import Profile from './profile';
 import ProfileDetails from './profileDetails';
+import api from '../../API'
+import Cookies from 'js-cookie'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,13 +22,34 @@ const useStyles = makeStyles((theme) => ({
 
 const Account = () => {
     const classes = useStyles();
+    const [user, setUser] = useState([])
+    useEffect(() => {
+        const fetchUserdata = async () => {
+            const res = await api.account.getMe()
+            if (res.status) {
+                setUser(res.data)
+                // console.log(res.data)
+            } else {
+                // res.send('khong duoc cap du lieu')
+                console.log('unreachable');
+            }
+        }
+        fetchUserdata()
+    }, [])
 
+    const handleLogout = () => {
+        Cookies.remove('token')
+    }
     return (
         <Page
             className={classes.root}
             title="Account"
-            
+
         >
+            <Button
+                onClick={handleLogout}
+                href='/SignIn'
+            >Sign Out</Button>
             <Container maxWidth="lg">
                 <Grid
                     container
@@ -37,7 +61,7 @@ const Account = () => {
                         md={6}
                         xs={12}
                     >
-                        <Profile />
+                        <Profile user={user} />
                     </Grid>
                     <Grid
                         item
@@ -45,7 +69,7 @@ const Account = () => {
                         md={6}
                         xs={12}
                     >
-                        <ProfileDetails />
+                        <ProfileDetails user={user} />
                     </Grid>
                 </Grid>
             </Container>

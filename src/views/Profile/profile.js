@@ -14,14 +14,15 @@ import {
     makeStyles
 } from '@material-ui/core';
 
-const user = {
-    avatar: 'https://scontent.fhph1-1.fna.fbcdn.net/v/t1.0-9/106093887_1565088323650257_1709294526943122853_n.jpg?_nc_cat=104&_nc_sid=09cbfe&_nc_ohc=Va-EHqDBaQwAX8bWv1b&_nc_ht=scontent.fhph1-1.fna&oh=f61aff53cda33d722b44cb9075f5fba3&oe=5F7FE692',
-    city: 'Hanoi',
-    country: 'Vietnam',
-    jobTitle: 'Senior Developer',
-    name: 'Nguyen Quang Hieu',
-    timezone: 'GTM-7'
-};
+// const user = {
+//     avatar: 'https://scontent.fhph1-1.fna.fbcdn.net/v/t1.0-9/106093887_1565088323650257_1709294526943122853_n.jpg?_nc_cat=104&_nc_sid=09cbfe&_nc_ohc=Va-EHqDBaQwAX8bWv1b&_nc_ht=scontent.fhph1-1.fna&oh=f61aff53cda33d722b44cb9075f5fba3&oe=5F7FE692',
+//     city: 'Hanoi',
+//     country: 'Vietnam',
+//     jobTitle: 'Senior Developer',
+//     name: 'Nguyen Quang Hieu',
+//     timezone: 'GTM-7'
+// };
+const timezone = 'GTM-7'
 
 const useStyles = makeStyles(() => ({
     root: {},
@@ -31,7 +32,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const Profile = ({ className, ...rest }) => {
+const Profile = ({user, className, ...rest }) => {
     const classes = useStyles();
 
     return (
@@ -54,20 +55,20 @@ const Profile = ({ className, ...rest }) => {
                         boysBottom
                         variant="h3"
                     >
-                        {user.name}
+                        {user.display}
                     </Typography>
                     <Typography
                         color="textSecondary"
                         variant="body1"
                     >
-                        {`${user.city} ${user.country}`}
+                        {`${user.address} ${user.status}`}
                     </Typography>
                     <Typography
                         className={classes.dateText}
                         color="textSecondary"
                         variant="body1"
                     >
-                        {`${moment().format('hh:mm A')} ${user.timezone}`}
+                        {`${moment().format('hh:mm A')} ${timezone}`}
                     </Typography>
                 </Box>
             </CardContent>
