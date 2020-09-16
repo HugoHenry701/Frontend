@@ -1,9 +1,8 @@
 import React from 'react';
 import { withSnackbar } from 'notistack'
 import {
-  Button,
-  Typography,
 } from '@material-ui/core'
+import Pagination from '@material-ui/lab/Pagination'
 import ProductForm from './product'
 
 
@@ -36,29 +35,17 @@ class HomePage extends React.Component {
   async componentDidMount() {
     await this.fetchData()
   }
-  prevPage = async () => {
-    if (this.state.page > 1) {
-      await this.setState({
-        page: this.state.page - 1
-      })
-      await this.fetchData()
-    } 
-  }
-  nextPage = async () => {
-    if (this.state.page < Math.ceil(this.state.total / this.state.size)) {
-      await this.setState({
-        page: this.state.page + 1
-      })
-      await this.fetchData()
-    } 
+  handleChange = async (event,value) => {
+    await this.setState({
+      page: value
+    })
+    await this.fetchData()
   }
   render() {
     return (
       <div style={{ paddingTop: 65, }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <Button variant="contained" color='primary' onClick={this.prevPage}>Prev</Button>
-          <Typography>{this.state.page}-{Math.ceil(this.state.total / this.state.size)}</Typography>
-          <Button variant="contained" color='primary' onClick={this.nextPage}>Next</Button>
+          <Pagination count={Math.ceil(this.state.total / this.state.size)} page={this.state.page} onChange={this.handleChange}  variant="outlined" color="primary" />
         </div>
         <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
           {

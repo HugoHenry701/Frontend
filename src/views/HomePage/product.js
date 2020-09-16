@@ -52,7 +52,7 @@ export default class product extends Component {
                             </IconButton>
                         }
                         title={this.props.product.display}
-                        subheader={this.props.product.priceSale}
+                        subheader={'$'+this.props.product.priceSale}
                     />
                     <CardMedia
                         style={{
