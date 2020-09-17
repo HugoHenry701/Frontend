@@ -13,6 +13,8 @@ import {
     Typography,
     makeStyles
 } from '@material-ui/core';
+import Cookies from 'js-cookie'
+
 
 // const user = {
 //     avatar: 'https://scontent.fhph1-1.fna.fbcdn.net/v/t1.0-9/106093887_1565088323650257_1709294526943122853_n.jpg?_nc_cat=104&_nc_sid=09cbfe&_nc_ohc=Va-EHqDBaQwAX8bWv1b&_nc_ht=scontent.fhph1-1.fna&oh=f61aff53cda33d722b44cb9075f5fba3&oe=5F7FE692',
@@ -32,8 +34,11 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const Profile = ({user, className, ...rest }) => {
+const Profile = ({ user, className, ...rest }) => {
     const classes = useStyles();
+    const handleLogout = () => {
+        Cookies.remove('token')
+    }
 
     return (
         <Card
@@ -73,14 +78,27 @@ const Profile = ({user, className, ...rest }) => {
                 </Box>
             </CardContent>
             <Divider />
-            <CardActions>
+            <CardActions style={{
+                display:'flex',
+                flexDirection:'column'
+            }}>
                 <Button
                     color="primary"
                     fullWidth
                     variant="text"
                 >
                     Upload picture
-        </Button>
+                </Button>
+                <Button
+                    onClick={handleLogout}
+                    href='/SignIn'
+                    color="primary"
+                    fullWidth
+                    variant="text"
+                >
+                    Sign Out
+                </Button>
+
             </CardActions>
         </Card>
     );

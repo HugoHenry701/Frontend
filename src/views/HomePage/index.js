@@ -35,7 +35,7 @@ class HomePage extends React.Component {
   async componentDidMount() {
     await this.fetchData()
   }
-  handleChange = async (event,value) => {
+  handleChange = async (event, value) => {
     await this.setState({
       page: value
     })
@@ -43,11 +43,11 @@ class HomePage extends React.Component {
   }
   render() {
     return (
-      <div style={{ paddingTop: 65, }}>
+      <div style={{ paddingTop: 74, }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <Pagination count={Math.ceil(this.state.total / this.state.size)} page={this.state.page} onChange={this.handleChange}  variant="outlined" color="primary" />
+          <Pagination count={Math.ceil(this.state.total / this.state.size)} page={this.state.page} onChange={this.handleChange} variant="outlined" color="primary" />
         </div>
-        <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+        <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap', paddingTop: 8 }}>
           {
             this.state.listProduct.map(
               (product) => (

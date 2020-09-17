@@ -14,7 +14,6 @@ import {
     Home,
     VpnKey,
     Category,
-    AccountCircle,
 } from '@material-ui/icons'
 import CategoryForm from './category'
 import API from '../../API'
@@ -83,7 +82,7 @@ export default class index extends Component {
                             <ListItemIcon>
                                 <VpnKey />
                             </ListItemIcon>
-                            <ListItemText primary="Login" />
+                            <ListItemText primary="SignIn" />
                         </ListItem>
                     </Link>
                     <Link to="/SignUp">
@@ -94,12 +93,12 @@ export default class index extends Component {
                             <ListItemText primary="SignUp" />
                         </ListItem>
                     </Link>
-                    <Link to="/profile">
+                    <Link to="/SignUp">
                         <ListItem button>
                             <ListItemIcon>
-                                <AccountCircle />
+                                <VpnKey />
                             </ListItemIcon>
-                            <ListItemText primary="Profile" />
+                            <ListItemText primary="Register" />
                         </ListItem>
                     </Link>
                     <ListItem button onClick={this.handleClick}>

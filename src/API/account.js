@@ -13,3 +13,16 @@ export const getMe = async () => {
         }
     }
 }
+export const signUp = async (body) => {
+    try {
+        const req = await api.post('/account',
+            body
+        )
+        return {
+            status: 1,
+            userdata: req.data.data
+        }
+    } catch (error) {
+
+    }
+}

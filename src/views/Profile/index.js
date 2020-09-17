@@ -3,13 +3,11 @@ import {
     Container,
     Grid,
     makeStyles,
-    Button,
 } from '@material-ui/core';
 import Page from '../../components/Page';
 import Profile from './profile';
 import ProfileDetails from './profileDetails';
 import api from '../../API'
-import Cookies from 'js-cookie'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,20 +34,12 @@ const Account = () => {
         }
         fetchUserdata()
     }, [])
-
-    const handleLogout = () => {
-        Cookies.remove('token')
-    }
     return (
         <Page
             className={classes.root}
             title="Account"
 
         >
-            <Button
-                onClick={handleLogout}
-                href='/SignIn'
-            >Sign Out</Button>
             <Container maxWidth="lg">
                 <Grid
                     container

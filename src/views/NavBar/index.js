@@ -2,13 +2,19 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ListForm from '../ListBar'
 import { Drawer } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
+import {
+    AccountCircle,
+} from '@material-ui/icons'
+import {
+    Link,
+} from 'react-router-dom'
+
 
 export default class NavBar extends React.Component {
     constructor(props) {
@@ -29,7 +35,7 @@ export default class NavBar extends React.Component {
                         <IconButton
                             style={
                                 {
-                                    backgroundColor:'# fff3e0'
+                                    backgroundColor: '# fff3e0'
                                 }
                             }
                             aria-label="open drawer"
@@ -41,7 +47,15 @@ export default class NavBar extends React.Component {
                         <Typography variant="h6" noWrap>
                             VipPro
                         </Typography>
-                        <Button color="inherit">Subcribe</Button>
+                        <Link to="/profile">
+                            <IconButton style={
+                                {
+                                    backgroundColor: '# fff3e0'
+                                }
+                            }>
+                                <AccountCircle />
+                            </IconButton>
+                        </Link>
                     </Toolbar>
                 </AppBar>
                 <nav className={this.props.drawer} >
