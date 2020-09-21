@@ -9,7 +9,6 @@ import {
     IconButton,
     Avatar,
     Link,
-    CardActionArea
 } from '@material-ui/core'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -48,23 +47,23 @@ export default class product extends Component {
                     </Avatar>
                         }
                         action={
-                            <IconButton aria-label='settings' >
+                            <IconButton>
+                                <Link href={`/product/${this.props.product.productId}`}>
                                     <MoreVertIcon />
+                                </Link>
                             </IconButton>
                         }
                         title={this.props.product.display}
                         subheader={'$' + this.props.product.priceSale}
                     />
-                    <CardActionArea href={`/product/${this.props.product.productId}`}>
-                        <CardMedia
-                            style={{
-                                height: 0,
-                                paddingTop: '100%'
-                            }}
-                            image={this.props.product.imageUrl}
-                            title={this.props.product.display}
-                        />
-                    </CardActionArea>
+                    <CardMedia
+                        style={{
+                            height: 0,
+                            paddingTop: '100%'
+                        }}
+                        image={this.props.product.imageUrl}
+                        title={this.props.product.display}
+                    />
                     <CardContent>
                         <Typography variant='body2' color='textSecondary' component='p' >
                             {this.props.product.description}
@@ -78,7 +77,7 @@ export default class product extends Component {
                             <ShareIcon />
                         </IconButton>
                         <IconButton>
-                            <Link href='/order'>
+                            <Link href='/shopCart'>
                                 <AddShoppingCartIcon />
                             </Link>
                         </IconButton>

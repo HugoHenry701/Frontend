@@ -32,6 +32,21 @@ export const getProductById = async (id) => {
             status: false
         }
     }
-
+}
+export const getProductbyCategoryID = async (categoryId,params) => {
+    try {
+        const res = await API.get(`/product/category/${categoryId}`,{
+            params
+        })
+        return {
+            status: true,
+            data: res.data
+        }
+    } catch (error) {
+        return {
+            message: 'cannot get data',
+            status: false
+        }
+    }
 }
 

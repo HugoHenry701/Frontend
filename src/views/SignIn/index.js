@@ -30,6 +30,7 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
+    width: '100%'
   },
   image: {
     backgroundImage: 'url(https://source.unsplash.com/random)',
@@ -72,12 +73,14 @@ export default function SignInSide() {
   }
   const handleLogin = async () => {
     const result = await api.auth.login(values.username, values.password)
-    if (result.status) {
+    if (result.status === 1) {
       Cookies.set('token', result.token, {
         expires: 365
       })
+      window.location = '/'
     } else {
-      console.log('cannot get token');
+      alert(result.message)
+      window.location = '/SignIn'
     }
   }
   return (
@@ -130,7 +133,6 @@ export default function SignInSide() {
               color="primary"
               className={classes.submit}
               onClick={handleLogin}
-              href='/profile'
             >
               Sign In
             </Button>

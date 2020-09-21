@@ -7,7 +7,7 @@ const API = axios.create({
 API.interceptors.request.use(
     req => {
         console.log(req);
-        req.headers.authorization = `Bearer ${Cookies.getJSON('token')}`;
+        req.headers.authorization = `Bearer ${Cookies.get('token')}`;
         return req
     }, err => {
         console.log(err);
@@ -16,7 +16,7 @@ API.interceptors.request.use(
 API.interceptors.response.use(
     res => {
         console.log(res);
-        res.headers.authorization = `Bearer ${Cookies.getJSON('token')}`;
+        res.headers.authorization = `Bearer ${Cookies.get('token')}`;
         return res
     }, err => {
         console.log(err);

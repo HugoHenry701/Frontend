@@ -13,7 +13,6 @@ import {
     Typography,
     makeStyles
 } from '@material-ui/core';
-import Cookies from 'js-cookie'
 
 
 // const user = {
@@ -36,9 +35,7 @@ const useStyles = makeStyles(() => ({
 
 const Profile = ({ user, className, ...rest }) => {
     const classes = useStyles();
-    const handleLogout = () => {
-        Cookies.remove('token')
-    }
+    
 
     return (
         <Card
@@ -89,16 +86,6 @@ const Profile = ({ user, className, ...rest }) => {
                 >
                     Upload picture
                 </Button>
-                <Button
-                    onClick={handleLogout}
-                    href='/SignIn'
-                    color="primary"
-                    fullWidth
-                    variant="text"
-                >
-                    Sign Out
-                </Button>
-
             </CardActions>
         </Card>
     );

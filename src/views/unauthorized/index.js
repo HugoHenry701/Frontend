@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class shopCart extends Component {
+export default class unauthorized extends Component {
     render() {
         return (
             <div style={{marginTop:"65px"}}>

@@ -4,12 +4,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import ListForm from '../ListBar'
+import ListForm from './listBar'
 import { Drawer } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
 import {
-    AccountCircle,
+    VpnKey,
 } from '@material-ui/icons'
 import {
     Link,
@@ -28,7 +28,7 @@ export default class NavBar extends React.Component {
     }
     render() {
         return (
-            <div style={{ display: 'flex' }}  >
+            <div style={{ width: '-webkit-fill-available' }}  >
                 <CssBaseline />
                 <AppBar position="fixed" >
                     <Toolbar style={{ display: "flex", justifyContent: 'space-between', backgroundColor: '# fff3e0' }} >
@@ -47,13 +47,9 @@ export default class NavBar extends React.Component {
                         <Typography variant="h6" noWrap>
                             VipPro
                         </Typography>
-                        <Link to="/profile">
-                            <IconButton style={
-                                {
-                                    backgroundColor: '# fff3e0'
-                                }
-                            }>
-                                <AccountCircle />
+                        <Link to="/SignIn">
+                            <IconButton>
+                                <VpnKey />
                             </IconButton>
                         </Link>
                     </Toolbar>
@@ -70,7 +66,10 @@ export default class NavBar extends React.Component {
                     </Hidden>
 
                 </nav>
-            </div>
+                <div>
+                    {this.props.children}
+                </div>
+            </div >
         )
     }
 }

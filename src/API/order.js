@@ -1,9 +1,11 @@
-import API from '../API/api'
+import API from './api'
 
-export const parameterCategory = async () => {
+export const getallOrder = async (params) => {
     try {
 
-        const res = await API.get('/parameter/list-category-id')
+        const res = await API.get('/order', {
+            params
+        })
         return {
             status: true,
             data: res.data
@@ -14,7 +16,5 @@ export const parameterCategory = async () => {
             status: false
         }
     }
+
 }
-
-
-

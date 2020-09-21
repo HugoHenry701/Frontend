@@ -1,12 +1,16 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 
-const protectedRoute = ({ component: Component, token, ...rest }) => {
+const protectedRoute = ({ component: Component, layout: LoginLayout, token, ...rest }) => {
     return (
         <Route {...rest} render={
             props => {
                 if (token != null) {
-                    return <Component {...rest} {...props} />
+                    return (
+                        <LoginLayout>
+                            <Component {...rest} {...props} />
+                        </LoginLayout>
+                    )
                 } else {
                     return <Redirect to={
                         {
